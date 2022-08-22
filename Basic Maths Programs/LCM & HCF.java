@@ -61,7 +61,7 @@ public class LCM_And_HCF {
             return a;
         }
         return findHcf(b, a % b);
-    }
+    } 
      */
     public static void main(String[] args) {
         long a = 5;
