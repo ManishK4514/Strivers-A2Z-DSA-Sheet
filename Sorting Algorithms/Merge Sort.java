@@ -2,6 +2,7 @@
     ⊛ After Combining all elments array are in sorted form.
     ⊛ At every recursive call We divide the array into two subArrays.
     ⊛ Then merging two the array at every recursion call according to the order.
+    ⊛ Time Complexity: O(NlogN) & Space Complexity: O(N)    
 
 // Write a program to sort an Array using merge sort.
       
