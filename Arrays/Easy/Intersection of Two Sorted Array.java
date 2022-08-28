@@ -20,41 +20,54 @@
    Output: 3,5
    Explanation: We are given two arrays A and B. 
    The elements present in both the arrays are 3 and 5.
+ */
 
-*/
+import java.util.*;
 
-public class Search_In_2D_Array {
-    public static boolean searchMatrix(int[][] matrix, int target) {
+public class Intersection_Of_Two_Sorted_Array {
+    public static ArrayList<Integer> findIntersection(int[] arr1, int[] arr2, int n, int m){
         /*
-         * Solution: 01 --> Time complexity: o(N*M) where N is row and M is column & Space complexity: O(1). 
-         * for(int row = 0; row < matrix.length; row++){
-               for(int col = 0; col < matrix[row].length; col++){
-                   if(matrix[row][col] == target){
-                       return true;
+         * BruteForce Approach --> Time complexity: O(N^2) & Space Complexity: O(1).
+         * ArrayList<Integer> intersection = new ArrayList<>();
+           for(int i = 0; i < n; i++){
+               for(int j = 0; j < m; j++){
+                   if(arr1[i] == arr2[j]){
+                       if((intersection.size() == 0 ||intersection.get(intersection.size() - 1) != arr1[i])){
+                           intersection.add(arr1[i]);
+                       }
                    }
                }
            }
-           return false;
+           return intersection;
         */
-        
-        // solution 2: Time Complexity: (M * N).
-        int i = 0, j = matrix[0].length - 1;
-        while(i < matrix.length && j >= 0){
-            if(matrix[i][j] == target){
-                return true;
+
+        // Optimized Solution --> Time complexity: O(N) & Space complexity: O(1).
+        ArrayList<Integer> ans = new ArrayList<>();
+        int i = 0, j = 0;
+        while(i < arr1.length && j < arr2.length){
+            if(arr1[i] == arr2[j]){
+                ans.add(arr1[i]);
+                i++;
+                j++;
             }
-            else if(matrix[i][j] > target){
-                j--;
-            }
-            else{
+            else if(arr1[i] < arr2[j]){
                 i++;
             }
+            else{
+                j++;
+            }
         }
-        return false;
+        return ans;
+        
     }
     public static void main(String[] args) {
-        int[][] matrix = {{1,3,5,7},{10,11,16,20},{23,30,34,60}};
-        int target = 16;
-        System.out.println(searchMatrix(matrix, target));
+        int n = 10, m = 7;
+        int arr1[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int arr2[] = {2, 3, 4, 4, 5, 11, 12};
+        ArrayList<Integer> intersection = findIntersection(arr1, arr2, n, m);
+        System.out.println("Union of arr1 and arr2 is ");
+        for (int val: intersection){
+          System.out.print(val+" ");
+        }
     }
 }
