@@ -22,7 +22,7 @@ public class Rotate_Image_by_90_degree {
     public static void rotate(int[][] matrix) {
         /*
          * BruteForce Approach: we will insert our each row of original array in the temp array from last column to first and then finally we will copy the temp array into the original array.
-         * Time complexity: O(N*N) & Space complexity: O(N*N)
+         * Time complexity: O(N^2) & Space complexity: O(N^2)
          * 
          * int m = matrix.length;
            int n = matrix[0].length;
@@ -42,7 +42,21 @@ public class Rotate_Image_by_90_degree {
                }
            }
         */
-        
+        // Solution 2: Time complexity: O(N^2) & Space complexity: O(1)
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = i; j < matrix[0].length; j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[0].length/2; j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][matrix.length - 1 - j];
+                matrix[i][matrix.length - 1 - j] = temp;
+            }
+        }
     }
     public static void main(String[] args) {
         int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
