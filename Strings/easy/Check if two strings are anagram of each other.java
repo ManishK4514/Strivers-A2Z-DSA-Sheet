@@ -27,7 +27,7 @@ public class Valid_Anagram {
     }
     public static boolean isAnagram(String s, String t) {
         /*
-         * BruteForce approach: Time complexity: O(N^2) & Space complexity: O(1).
+         * BruteForce approach: Time complexity: O(N^2) & Space complexity: O(N).
          * if(s.length() != t.length()){
                return false;
            }
