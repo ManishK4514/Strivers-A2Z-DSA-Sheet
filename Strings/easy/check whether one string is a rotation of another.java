@@ -20,9 +20,9 @@
 public class check_whether_one_string_is_a_rotation_of_another {
     public static boolean rotateString(String s, String goal) {
         /*
-           optimized Appraoch: Time complexity: O(N^2) & Space complexity: O(1)
+           BruteForce Appraoch: Time complexity: O(N^2) & Space complexity: O(1)
 
-         * if(s.length() != goal.length()){
+           if(s.length() != goal.length()){
                return false;
            }
            for(int i = 0; i < s.length(); i++){
