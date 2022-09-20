@@ -7,15 +7,19 @@
 
 
 public class LindkedListImplementaion {
-    Node head;
+    private Node head;
     private int size;
     class Node{
-        int value;
-        Node next;
+        private int value;
+        private Node next;
 
-        Node(int value){
+        public Node(int value){
             this.value = value;
             this.next = null;
+        }
+        public Node(int value, Node next) {
+            this.value = value;
+            this.next = next;
         }
     }
 
@@ -44,6 +48,21 @@ public class LindkedListImplementaion {
             currNode = currNode.next;
         }
         currNode.next = node;
+    }
+
+    // Insert at Index no.
+    public void insert(int value, int index){
+        if(index == 0){
+            insertFirst(value);
+            return;
+        }
+        size++;
+        Node temp = head;
+        for(int i = 0; i < index; i++){
+            temp = temp.next;
+        }
+        Node node = new Node(value, temp.next);
+        temp.next = node;
     }
 
     // print list
@@ -90,9 +109,39 @@ public class LindkedListImplementaion {
         SecondLast.next = null;
     }
 
+    // Delete any node
+    public void delete(int index){
+        if(index == 0){
+            deleteFirst();
+            return;
+        }
+        size--;
+        Node prev = get(index - 1);
+        prev.next = prev.next.next;
+    }
+
+    // Search Value in the LinkedList
+    public Node find(int value){
+        Node node = head;
+        while(node != null){
+            if(node.value == value){
+                return node;
+            }
+            node = node.next;
+        }
+        return null;
+    }
+
     // Get Size of LinkedList
     public void getSize(){
         System.out.println(size);
+    }
+    public Node get(int index) {
+        Node node = head;
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        return node;
     }
     public static void main(String[] args) {
         LindkedListImplementaion list = new LindkedListImplementaion();
@@ -103,16 +152,23 @@ public class LindkedListImplementaion {
         list.insertLast(15);
         list.insertLast(16);
         list.insertLast(17);
+        // list.insert(13, 2);
         list.display();
-        list.getSize();
-        list.deleteFirst();
+        list.delete(2);
         list.display();
-        list.getSize();
-        list.deleteLast();
-        list.display();
-        list.getSize();
-        list.insertFirst(11);
-        list.display();
-        list.getSize();
+        // list.getSize();
+        // list.delete(6);  --> not enough elements
+        // list.display();
+        // list.display();
+        // list.getSize();
+        // list.deleteFirst();
+        // list.display();
+        // list.getSize();
+        // list.deleteLast();
+        // list.display();
+        // list.getSize();
+        // list.insertFirst(11);
+        // list.display();
+        // list.getSize();
     }
 }
