@@ -62,7 +62,7 @@ class Insert_Node_In_LinkedList {
         ListNode node = new ListNode(value, temp.next);
         temp.next = node;
         return head;
-    }
+    } 
 
     public static void main(String[] args) {
         ListNode head = null; // head of the LinkedList
