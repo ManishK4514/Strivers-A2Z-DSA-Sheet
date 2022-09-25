@@ -51,4 +51,48 @@ class Solution
     }
 }
 
+class Solution
+{
+    //Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head)
+    {
+        // creating three seprate nodes
+        Node zeroHead = new Node(0);
+        Node zeroTail = zeroHead;
+        Node oneHead = new Node(0);
+        Node oneTail = oneHead;
+        Node twoHead = new Node(0);
+        Node twoTail = twoHead;
+        
+        Node temp = head;
+        while(temp != null){
+            if(temp.data == 0){
+                zeroTail.next = temp;
+                zeroTail = zeroTail.next;
+            }
+            else if(temp.data == 1){
+                oneTail.next = temp;
+                oneTail = oneTail.next;
+            }
+            else if(temp.data == 2){
+                twoTail.next = temp;
+                twoTail = twoTail.next;
+            }
+            temp = temp.next;
+        }
+        
+        // merging
+        
+        if(oneHead.next != null){
+            zeroTail.next = oneHead.next;
+        }
+        else{
+            zeroTail.next = twoHead.next;
+        }
+        oneTail.next = twoHead.next;
+        twoTail.next = null;
+        head = zeroHead.next;
+        return head;
+    }
+}
 
