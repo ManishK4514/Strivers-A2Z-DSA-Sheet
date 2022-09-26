@@ -35,3 +35,29 @@ class Solution {
         return ans;
     }
 }
+
+
+// Optimized Approach:
+
+class Solution {
+    public static ArrayList<ArrayList<Integer>> findPairsWithGivenSum(int target, Node head) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        HashSet<Integer> set = new HashSet<>();
+        Node node = head;
+        while(node != null){
+            set.add(node.data);
+            node = node.next;
+        }
+        node = head;
+        while(node != null){
+            if(set.contains(target - node.data) && (target - node.data) > node.data){
+                ArrayList<Integer> temp = new ArrayList<>();
+                temp.add(node.data);
+                temp.add(target - node.data);
+                ans.add(temp);
+            }
+            node = node.next;
+        }
+        return ans;
+    }
+}
