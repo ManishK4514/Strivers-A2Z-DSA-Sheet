@@ -14,19 +14,21 @@ public class palindrome {
     /*
      * Recursion Solution for simple problem.
      */
-    public static boolean checkPalindrome(String str, int start, int end){
-        if(start < end){
+    public static boolean palindrome(String str, int start, int end){
+        if(start >= end){
+            return true;
+        }
+        else{
             if(str.charAt(start) != str.charAt(end)){
                 return false;
             }
-            checkPalindrome(str, start + 1, end - 1);
+            return palindrome(str, start + 1, end - 1);
         }
-        return true;
     }
     public static void main(String[] args) {
         String str = "A man, a plan, a canal: Panama";
         str = str.replaceAll("[^a-zA-Z0-9]", "");
         str = str.toLowerCase();
-        System.out.println(checkPalindrome(str, 0, str.length() - 1));
+        System.out.println(palindrome(str, 0, str.length() - 1));
     }
 }
