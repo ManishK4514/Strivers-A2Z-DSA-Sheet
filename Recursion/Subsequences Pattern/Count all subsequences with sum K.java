@@ -1,5 +1,7 @@
 // Write a program to print all the SubSequences with sum k.
 /*
+   Q. Write a program to count all the Subsequences with sum k.
+
  * Input: [1, 2, 1], Target = 2;
  * output: ([[1,1], [2]]) = 2
  * 
@@ -7,33 +9,32 @@
  * output: ([[1, 2, 2], [2, 3], [3, 2]]) = 3
  */
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Count_all_subsequences_with_sum_K {
-    public static void findCombination(int idx, int[] arr, int target, List<List<Integer>> ans, ArrayList<Integer> ds){
+    public static int findCombination(int idx, int[] arr, int target){
+        // Condition not satisfied
+        // strictly done if array contains only posivtive integer
+        if(target < 0){
+            return 0;
+        }
         if(idx == arr.length){
             if(target == 0){
-                ans.add(new ArrayList<>(ds));
+                return 1;
             }
-            return;
+            return 0;
         }
         // will take
-        ds.add(arr[idx]);
-        findCombination(idx + 1, arr, target - arr[idx], ans, ds);
-        ds.remove(ds.size() - 1);
+        int l = findCombination(idx + 1, arr, target - arr[idx]);
 
         // will not take
-        findCombination(idx + 1, arr, target, ans, ds);
+        int r = findCombination(idx + 1, arr, target);
+        return l + r;
     }
     public static int combinationSum(int[] arr, int target) {
-        List<List<Integer>> ans = new ArrayList<>();
-        findCombination(0, arr, target, ans, new ArrayList<>());
-        return ans.size();
+        return findCombination(0, arr, target);
     }
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 2};
-        int target = 5;
+        int[] arr = {1, 2, 1, 1};
+        int target = 2;
         System.out.println(combinationSum(arr, target));
     }
 }
