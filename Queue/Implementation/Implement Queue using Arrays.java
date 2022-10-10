@@ -60,9 +60,10 @@ class Queue{
     // peak
     int peek(){
         if(isEmpty()){
+            System.out.println("Queue is Empty!");
             return -1;
         }
-        return arr[rear];
+        return arr[0];
     }
 }
 
