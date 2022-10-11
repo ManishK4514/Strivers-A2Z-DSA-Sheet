@@ -15,7 +15,7 @@
     Explanation: Infix to postfix
 
     Approach: To convert Infix expression to Postfix
-    
+
     1. Scan the infix expression from left to right. 
     
     2. If the scanned character is an operand, Print it. 
@@ -40,7 +40,7 @@ import java.util.Stack;
 
 public class Infix_To_Postfix_Conversion_Using_Stack {
     public static String infixToPostfix(String exp) {
-        // Time complexity: O(N) & Space complexity: O(1).
+        // Time complexity: O(N) & Space complexity: O(N).
 
         HashMap<Character, Integer> map = new HashMap<>();
         map.put('+', 1);
@@ -78,7 +78,6 @@ public class Infix_To_Postfix_Conversion_Using_Stack {
                     s.push(exp.charAt(i));
                 }
             }
-            System.out.println(s);
         }
         while (!s.empty()) {
             sb.append(s.pop());
