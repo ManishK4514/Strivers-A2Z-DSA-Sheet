@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class Longest_Substring_Without_Repeating_Characters {
     public static int lengthOfLongestSubstring(String s) {
         /* 
+            // BruteForce Approach:
             int max = 0;
             int[] cnt = new int[128];
             for(int i = 0; i < s.length(); i++){
