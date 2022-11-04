@@ -22,27 +22,27 @@
 import java.util.HashMap;
 
 public class Subarrays_with_K_Different_Integers {
-    public static int subarraysWithKDistinct(int[] nums, int k) {
-        /* 
-            // BruteForce Approach: Time Complexity: O(N^2) & Space Complexity: O(1)
-            int count = 0;
-            for(int i = 0; i < nums.length; i++){
-                HashSet<Integer> set = new HashSet<>();
-                for(int j = i; j < nums.length; j++){
-                    set.add(nums[j]);
-                    if(set.size() == k){
-                        count++;
+    /* 
+        public static int subarraysWithKDistinct(int[] nums, int k) {
+                // BruteForce Approach: Time Complexity: O(N^2) & Space Complexity: O(1)
+                int count = 0;
+                for(int i = 0; i < nums.length; i++){
+                    HashSet<Integer> set = new HashSet<>();
+                    for(int j = i; j < nums.length; j++){
+                        set.add(nums[j]);
+                        if(set.size() == k){
+                            count++;
+                        }
                     }
                 }
-            }
-            return count;
-        */
-
+                return count;      
+        }
+    */
+    public static int atMost(int[] nums, int k){
         // Optimized Approach: Time Complexity: O(N) & Space Complxity: O(N)
-        /*Intituion: First we will count all the subarray which contains at max K element and then we will count all the subarray which contains at max K - 1 element and we will substract both to get the count of all subarray with K different Integers. */
-        
+        /* Intituion: First we will count all the subarray which contains at max K element and then we will count all the subarray which contains at max K - 1 element and we will substract both to get the count of all subarray with K different Integers. */
         HashMap<Integer, Integer> map = new HashMap<>();
-        int i = 0, sum1 = 0, sum2 = 0;
+        int i = 0, sum = 0;
         for(int j = 0; j < nums.length; j++){
             map.put(nums[j], map.getOrDefault(nums[j], 0) + 1);
             while(map.size() > k){
@@ -52,22 +52,12 @@ public class Subarrays_with_K_Different_Integers {
                 }
                 i++;
             }
-            sum1 += ((j - i) + 1);
+            sum += ((j - i) + 1);
         }
-        i = 0;
-        HashMap<Integer, Integer> map2 = new HashMap<>();
-        for(int j = 0; j < nums.length; j++){
-            map2.put(nums[j], map2.getOrDefault(nums[j], 0) + 1);
-            while(map2.size() > k - 1){
-                map2.put(nums[i], map2.get(nums[i]) - 1);
-                if(map2.get(nums[i]) == 0){
-                    map2.remove(nums[i]);
-                }
-                i++;
-            }
-            sum2 += ((j - i) + 1);
-        }
-        return sum1 - sum2;
+        return sum;
+    }
+    public static int subarraysWithKDistinct(int[] nums, int k) {        
+        return atMost(nums, k) - atMost(nums, k - 1);
     }
     public static void main(String[] args) {
         int[] nums = {1,2,1,2,3};
