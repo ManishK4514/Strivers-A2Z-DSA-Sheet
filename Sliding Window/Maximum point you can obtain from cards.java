@@ -25,6 +25,14 @@
    Explanation: You have to take all the cards. Your score is the sum of points of all cards.
 */
 
+/*
+Logic:
+This question is a good example where simply finding a way to reword it would make your life a lot easier. 
+The question is asking us to find the maximum sum of values at the left and right edges of the array. More specifically, 
+it's asking us to find the max sum of k values at the edges. If we were to reword the question, we're essentially asked 
+to find the minimum subarray sum of length n - k. Once we find this, we simply subtract this from the total sum and this would be our answer.
+
+*/
 
 public class Maximum_Points_You_Can_Obtain_from_Cards {
     public static int maxScore(int[] cardPoints, int k) {
