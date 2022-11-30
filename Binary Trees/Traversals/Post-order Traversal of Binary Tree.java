@@ -14,6 +14,16 @@
    Input: root = [1]
    Output: [1]
 */
+
+class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int key){
+        this.data = key;
+    }
+}
+
 public class Postorder_Traversal_of_Binary_Tree {
     public static void postOrderTraversal(Node node){
         if(node == null){
