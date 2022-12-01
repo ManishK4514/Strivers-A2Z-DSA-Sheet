@@ -70,3 +70,47 @@ public class Level_order_Traversal {
         System.out.println(levelOrder(root));
     }
 }
+
+
+// FOR SPIRAL ORDER
+
+
+public static void reverse(List<Integer> subList){
+        int i = 0, j = subList.size() - 1;
+        while(i < j){
+            int temp = subList.get(i);
+            subList.set(i, subList.get(j));
+            subList.set(j, temp);
+            i++; j--;
+        }
+    }
+    ArrayList<Integer> findSpiral(Node root) 
+    {
+        ArrayList<Integer> res = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        List<List<Integer>> wrapList = new LinkedList<>();
+        if(root == null) return res;
+        int k = 0;
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int levelNum = queue.size();
+            List<Integer> subList = new LinkedList<>();
+            for(int i = 0; i < levelNum; i++){
+                if(queue.peek().left != null) queue.add(queue.peek().left);
+                if(queue.peek().right != null) queue.add(queue.peek().right);
+                subList.add(queue.remove().data);
+            }
+            if(k % 2 == 0){
+                reverse(subList);
+            }
+            k++;
+            wrapList.add(subList);
+        }
+        
+        for(List<Integer> subList : wrapList){
+            for(int num : subList){
+                res.add(num);
+            }
+        }
+        return res;
+    }
