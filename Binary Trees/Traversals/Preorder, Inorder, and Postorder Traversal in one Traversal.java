@@ -57,7 +57,7 @@ public class Preorder_Inorder_and_Postorder_Traversal_in_one_Traversal {
                 }
             }
 
-            // this is the part of in
+            // this is the part of Post
             // Don't push it back again 
             else{
                 post.add(it.node.data);
