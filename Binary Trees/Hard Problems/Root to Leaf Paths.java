@@ -25,6 +25,7 @@
    Output: 10 20 40 #10 20 60 #10 30 #
 */
 
+// import java.util.List;
 import java.util.ArrayList;
 
 class Node{
@@ -62,6 +63,31 @@ public class Root_to_Leaf_Paths {
         getPath(root, res, new ArrayList<>());
         return res;
     }
+    
+    /* 
+        // LeetCode String Version Solution 
+        // Problem : 257. Binary Tree Paths (LeetCode)
+        
+        public void getPath(Node root, String path, ArrayList<String> answer){
+            if(root.left == null && root.right == null){
+                path += root.val;
+                answer.add(path);
+                return;
+            }
+            
+            if(root.left != null){
+                getPath(root.left, path + root.val + "->", answer);
+            }
+            if(root.right != null){
+                getPath(root.right, path + root.val + "->", answer);
+            }
+        }
+        public List<String> binaryTreePaths(Node root) {
+            ArrayList<String> answer = new ArrayList<>();
+            if(root != null) getPath(root, "", answer);
+            return answer;
+        }
+    */
     public static void main(String[] args) {
         /*
             Visualisation of the tree in real world
