@@ -59,7 +59,7 @@ public class Children_Sum_Property_in_Binary_Tree {
         if(child >= root.val) root.val = child;
         else{
             if(root.left != null) root.left.val = root.val;
-            if(root.left != null) root.right.val = root.val;
+            if(root.right != null) root.right.val = root.val;
         }
         changeTree(root.left);
         changeTree(root.right);
