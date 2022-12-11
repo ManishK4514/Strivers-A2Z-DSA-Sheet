@@ -31,16 +31,11 @@ class Node{
 public class Count_total_Nodes_in_a_COMPLETE_Binary_Tree {
     /*      
         // Recursive -> Time Complexity: O(N) & Space Complexity: O(H)
-        int count = 0;
-        public static void preOrder(Node root){
-            if(root == null) return;
-            count++;
-            preOrder(root.left);
-            preOrder(root.right);
-        }
         public static int countNodes(Node root) {
-           preOrder(root);
-           return count;
+            if(root==null){
+                return 0;
+            }
+            return 1+countNodes(root.left)+countNodes(root.right);
         }
     */
 
