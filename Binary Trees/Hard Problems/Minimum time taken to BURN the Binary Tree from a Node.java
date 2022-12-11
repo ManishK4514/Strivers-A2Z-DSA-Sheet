@@ -1,25 +1,44 @@
 /*
-   Time To Burn Tree
-   Problem Statement
-   Detailed explanation ( Input/output format, Notes, Constraints, Images )
-   Sample Input 1 :
-   1 2 3 4 -1 -1 5 -1 -1 -1 -1
-   2    
-   Sample Output 1 :
-   3
-   Explanation Of Sample Input 1 :
-   The given binary tree will look as - 
+   Q. Minimum time taken to BURN the Binary Tree from a Node
+   Given a binary tree and a node called target. Find the minimum time required to burn the complete binary tree if the target is set on fire. It is known that in 1 second all nodes connected to a given node get burned. That is its left child, right child, and parent.
+
+
+   Example 1:
    
-   The Start node is 2.
-   In the zeroth minute, Node 2 will start to burn.
-   After one minute, Nodes 1 and 4 that are adjacent to 2 will burn completely.
-   After two minutes, Node 3 that is adjacent to node 1 will burn completely.
-   After three minutes, the only remaining Node 5 will be burnt and there will be no nodes remaining in the binary tree i.e the whole tree will burn in 3 minutes.
-   Sample Input 2 :
-   3 1 2 5 6 -1 -1 -1 -1 -1 -1
-   3
-   Sample Output 2 :
-   2            
+   Input:      
+             1
+           /   \
+         2      3
+       /  \      \
+      4    5      6
+          / \      \
+         7   8      9
+                      \
+                      10
+   Target Node = 8
+   Output: 7
+   Explanation: If leaf with the value 
+   8 is set on fire. 
+   After 1 sec: 5 is set on fire.
+   After 2 sec: 2, 7 are set to fire.
+   After 3 sec: 4, 1 are set to fire.
+   After 4 sec: 3 is set to fire.
+   After 5 sec: 6 is set to fire.
+   After 6 sec: 9 is set to fire.
+   After 7 sec: 10 is set to fire.
+   It takes 7s to burn the complete tree.
+   Example 2:
+   
+   Input:      
+             1
+           /   \
+         2      3
+       /  \      \
+      4    5      7
+     /    / 
+    8    10
+   Target Node = 10
+   Output: 5
 */
 
 import java.util.Queue;
@@ -71,21 +90,27 @@ public class Minimum_time_taken_to_BURN_the_Binary_Tree_from_a_Node {
         visited.put(start, true);
         while(!queue.isEmpty()){
             int size = queue.size();
-            count++;
+            int flag = 0;
             for(int i = 0; i < size; i++){
                 Node current = queue.remove();
                 if(current.left != null && visited.get(current.left) == null){
                     queue.add(current.left);
                     visited.put(current.left, true);
+                    flag = 1;
                 }
                 if(current.right != null && visited.get(current.right) == null){
                     queue.add(current.right);
                     visited.put(current.right, true);
+                    flag = 1;
                 }
                 if(parent_track.get(current) != null && visited.get(parent_track.get(current)) == null){
                     queue.add(parent_track.get(current));
                     visited.put(parent_track.get(current), true);
-                }            }
+                    flag = 1;
+                }           
+            }
+            // Check if any node burned at this level so that we will increase count
+            if(flag == 1) count++;
         }
         return count;
     }
