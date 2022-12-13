@@ -63,11 +63,11 @@ public class Construct_the_Binary_Tree_from_Postorder_and_Inorder_Traversal {
         Node root = new Node(postorder[postEnd]);
         
         int inRoot = inMap.get(root.val);
-        int numsRight = inEnd - inRoot;
+        int numsLeft = inRoot - inStart;
 
-        root.left = buildTree(inorder, inStart, inRoot - 1, postorder, postStart, postEnd - numsRight - 1, inMap);
-        root.right = buildTree(inorder, inRoot + 1, inEnd, postorder, postEnd - numsRight, postEnd - 1, inMap);
-
+        root.left = buildTree(inorder, inStart, inRoot - 1, postorder, postStart, postStart + numsLeft - 1, inMap);
+        root.right = buildTree(inorder, inRoot + 1, inEnd, postorder, postStart + numsLeft, postEnd - 1, inMap);
+        
         return root;
     }
     public static void main(String[] args) {
