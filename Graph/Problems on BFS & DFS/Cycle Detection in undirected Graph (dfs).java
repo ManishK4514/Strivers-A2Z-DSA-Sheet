@@ -35,15 +35,6 @@
 
 import java.util.ArrayList;
 
-class Pair{
-    int node;
-    int parent;
-    Pair(int node, int parent){
-        this.node = node;
-        this.parent = parent;
-    }
-}
-
 public class Cycle_Detection_in_undirected_Graph_using_dfs {
     /*
      * Time Complexity: O(N) + O(N) ≅ O(N) ----> For every node four directions
