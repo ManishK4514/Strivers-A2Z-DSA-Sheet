@@ -1,5 +1,5 @@
 /*
-   Detect cycle in an undirected graph Using DFS
+   Detect cycle in an undirected graph
    Given an undirected graph with V vertices and E edges, check whether it contains any cycle or not. Graph is in the form of adjacency list where adj[i] contains all the nodes ith node is having edge with.
    
    Example 1:
@@ -33,29 +33,38 @@
 
 */
 
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.ArrayList;
 
-public class Cycle_Detection_in_undirected_Graph_using_dfs {
+public class Cycle_Detection_in_unirected_Graph_using_bfs {
     /*
-     * Time Complexity: O(N) + O(N) ≅ O(N) ----> For every node four directions
-     * Space Complexity: O(N + 2E) + O(N) 
+     * Time Complexity: O(N + 2E) + O(N)  ----> For every node four directions
+     * Space Complexity: O(N) + O(N) ≅ O(N)
      */
-    public static boolean dfs(int src, int parent, int n, ArrayList<ArrayList<Integer>> adj, boolean[] vis){
+    public static boolean detectCycle(int src, int n, ArrayList<ArrayList<Integer>> adj, boolean[] vis){
         vis[src] = true;
-        for(int it : adj.get(src)){
-            if(vis[it] == false){
-                if(dfs(it, src, n, adj, vis)) return true;
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(src, -1));
+        while(!q.isEmpty()){
+            int node = q.peek().node;
+            int parent = q.peek().parent;
+            q.remove();
+            for(int adjacentNode : adj.get(node)){
+                if(vis[adjacentNode] == false){
+                    vis[adjacentNode] = true;
+                    q.add(new Pair(adjacentNode, node));
+                }
+                else if(adjacentNode != parent) return true;
             }
-            else if(it != parent) return true;
         }
         return false;
     }
     public static boolean isCycle(int n, ArrayList<ArrayList<Integer>> adj) {
         boolean[] vis = new boolean[n];
-        int parent = -1;
         for(int i = 0; i < n; i++){
             if(vis[i] == false){
-                if(dfs(i, parent, n, adj, vis)) return true;
+                if(detectCycle(i, n, adj, vis)) return true;
             }
         }
         return false;
