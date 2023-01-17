@@ -43,6 +43,12 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 public class Course_Schedule {
+    /*
+     * Time Complexity: O(N + E)
+     * Space Complexity: O(N)
+     */
+
+    // BFS
     public static boolean canFinish(int numCourses, int[][] prerequisites) {
         int n = numCourses;
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();        
