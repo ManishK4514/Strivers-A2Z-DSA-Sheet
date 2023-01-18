@@ -44,6 +44,51 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class find_Eventual_Safe_States {
+    /*
+     * Time Complexity: O(NlogN) + O(N + E)
+     * Space Complexity: O(NlogN) + O(N)
+     */
+
+    
+    /*
+        // BFS
+        
+        List<Integer> eventualSafeNodes(int n, List<List<Integer>> adj) {
+            int[] indegree = new int[n];
+            List<List<Integer>> adjRev = new ArrayList<>();
+            for(int i = 0; i < n; i++){
+                adjRev.add(new ArrayList<>());
+            }
+            
+            for(int i = 0; i < n; i++){
+                for(int it : adj.get(i)){
+                    adjRev.get(it).add(i);
+                    indegree[i]++;
+                }
+            }
+            
+            Queue<Integer> q = new LinkedList<>();
+            for(int i = 0; i < n; i++){
+                if(indegree[i] == 0){
+                    q.add(i);
+                }
+            }
+            
+            List<Integer> ans = new ArrayList<>();
+            while(!q.isEmpty()){
+                int node = q.remove();
+                ans.add(node);
+                for(int it : adjRev.get(node)){
+                    indegree[it]--;
+                    if(indegree[it] == 0) q.add(it);
+                }
+            }
+            Collections.sort(ans);
+            return ans;
+        }
+     */
+
+
      /*
      * Time Complexity: O(N + E)
      * Space Complexity: O(N)
