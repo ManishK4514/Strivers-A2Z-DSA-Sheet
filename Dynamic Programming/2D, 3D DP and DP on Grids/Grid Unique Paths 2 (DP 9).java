@@ -25,7 +25,7 @@
 
 // import java.util.Arrays;
 
-public class Minimum_path_sum_in_Grid {
+public class Grid_Unique_Paths_2 {
     /*
        // Recursion
        public static int totalPaths(int row, int col, int[][] obstacleGrid){
